@@ -1,0 +1,1 @@
+package null_object_pattern
