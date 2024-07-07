@@ -11,7 +11,11 @@ import (
 	. "DesignPattern/creational-pattern/objectpool-pattern"
 	. "DesignPattern/creational-pattern/prototype-pattern"
 	. "DesignPattern/observer-pattern"
+<<<<<<< Updated upstream
 	. "DesignPattern/state-pattern"
+=======
+	. "DesignPattern/structural-pattern/adapter-pattern"
+>>>>>>> Stashed changes
 
 	"fmt"
 	"log"
@@ -19,6 +23,7 @@ import (
 )
 
 func main() {
+<<<<<<< Updated upstream
 	visitor()
 }
 
@@ -54,6 +59,20 @@ func nullObject() {
 
 	csDepartment := qingHua.FindDepartment("计算机")
 	fmt.Println(csDepartment.GetName())
+=======
+	adapter()
+}
+
+// 客户端使用现有接口target使用适配器，而不需要知道适配器内部细节
+func adapter() {
+	// 创建 specificRequest 对象
+	specificRequest := SpecificRequest{}
+
+	// 创建适配器，包含 specificRequest 的引用
+	adapter := NewAdapter(specificRequest)
+	// 使用适配器，通过 Request 接口调用 specificRequest 的方法
+	fmt.Println(adapter.Request())
+>>>>>>> Stashed changes
 }
 
 func memento() {
