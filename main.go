@@ -5,10 +5,13 @@ import (
 	. "DesignPattern/behavioral-pattern/iterator-pattern"
 	. "DesignPattern/behavioral-pattern/mediator-pattern"
 	. "DesignPattern/behavioral-pattern/memento-pattern"
+	. "DesignPattern/behavioral-pattern/null-object-pattern"
+	. "DesignPattern/behavioral-pattern/visitor-pattern"
 	. "DesignPattern/chain-of-responsibility-pattern"
 	. "DesignPattern/creational-pattern/objectpool-pattern"
 	. "DesignPattern/creational-pattern/prototype-pattern"
 	. "DesignPattern/observer-pattern"
+	. "DesignPattern/state-pattern"
 
 	"fmt"
 	"log"
@@ -16,7 +19,41 @@ import (
 )
 
 func main() {
-	memento()
+	visitor()
+}
+
+func visitor() {
+	areaCalculator := NewAreaCalculator("A面积计算器")
+	square := NewSquare(5)
+	circle := NewCircle(4)
+
+	square.Accept(areaCalculator)
+	circle.Accept(areaCalculator)
+
+}
+
+func state() {
+
+	trafficLight := NewTrafficLight("世纪大道1号交通灯", &RedLight{})
+	trafficLight.SwitchToRed()    // 输出: 已经是红灯
+	trafficLight.SwitchToYellow() // 输出: 红灯变为黄灯
+	trafficLight.SwitchToGreen()  // 输出: 黄灯变为绿灯
+
+	// 更改状态
+	trafficLight.SetState(&GreenLight{})
+	trafficLight.SwitchToRed() // 输出: 绿灯变为红灯
+
+}
+
+func nullObject() {
+	qingHua := NewCollege("清华大学")
+	scienceDepartment := NewScienceDepartment("核科学系", 2)
+	musicDepartment := NewMusicDepartment("民族音乐系", 2)
+	qingHua.AddDepartment(scienceDepartment)
+	qingHua.AddDepartment(musicDepartment)
+
+	csDepartment := qingHua.FindDepartment("计算机")
+	fmt.Println(csDepartment.GetName())
 }
 
 func memento() {

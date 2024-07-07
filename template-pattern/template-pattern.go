@@ -5,7 +5,8 @@ import (
 	"testing"
 )
 
-//
+//模板方法模式
+
 //// 做菜方法集合 做菜流程
 //// Cooker 包换所有步骤的方法
 //type Cooker interface {
@@ -72,6 +73,7 @@ type Document interface {
 	Write(content string)
 }
 
+// DocumentTemplate 结构体里面套了个接口  类似于抽象类
 type DocumentTemplate struct {
 	Document
 }
@@ -85,6 +87,8 @@ func (dt *DocumentTemplate) Process(content string) {
 }
 
 type TextDocument struct {
+
+	// 不要放 DocumentTemplate 没有任何意义 反而增加了循环嵌套，耦合了
 	content string
 }
 
@@ -100,6 +104,9 @@ func (td *TextDocument) Write(content string) {
 
 func main() {
 	textDoc := &TextDocument{content: "Initial content"}
+	//因为textDocument实现了接口的所有方法 所以textDoc相当于接口
+	//又因为DocumentTemplate中嵌入了该接口
+	//所以DocumentTemplate中可以放textDoc
 	template := &DocumentTemplate{Document: textDoc}
 
 	template.Process("New content")
