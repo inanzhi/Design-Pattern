@@ -13,6 +13,7 @@ import (
 	. "DesignPattern/observer-pattern"
 	. "DesignPattern/state-pattern"
 	. "DesignPattern/structural-pattern/adapter-pattern"
+<<<<<<< Updated upstream
 	cp "DesignPattern/structural-pattern/composite-pattern"
 	"reflect"
 
@@ -20,12 +21,16 @@ import (
 	dfp "DesignPattern/structural-pattern/facade-pattern"
 	fly "DesignPattern/structural-pattern/flyweight-pattern"
 
+=======
+	bp "DesignPattern/structural-pattern/bridge-pattern"
+>>>>>>> Stashed changes
 	"fmt"
 	"log"
 	"strconv"
 )
 
 func main() {
+<<<<<<< Updated upstream
 	flyweight()
 }
 
@@ -75,6 +80,20 @@ func composite() {
 	folder2.Add(file3)
 	folder2.Add(folder1)
 	folder2.Search("rose")
+=======
+	bridge()
+}
+
+func bridge(){
+	red := &bp.Red{}
+	blue :=&bp.Blue{}
+
+	redSquare := bp.NewSquare(red)
+	fmt.Println(redSquare.Draw())
+	blueCircle := bp.NewCircle(blue)
+	fmt.Println(blueCircle.Draw())
+
+>>>>>>> Stashed changes
 }
 
 func visitor() {
@@ -110,6 +129,10 @@ func nullObject() {
 	csDepartment := qingHua.FindDepartment("计算机")
 	fmt.Println(csDepartment.GetName())
 
+<<<<<<< Updated upstream
+=======
+	adapter()
+>>>>>>> Stashed changes
 }
 
 // 客户端使用现有接口target使用适配器，而不需要知道适配器内部细节

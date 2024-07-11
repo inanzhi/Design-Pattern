@@ -1,41 +1,27 @@
 package bridge_pattern
 
-// Shape 是形状的抽象类
-type Shape struct {
-	color Color
+type Shape interface {
+	Draw()
 }
 
-// NewShape 创建一个有颜色的形状
-func NewShape(color Color) *Shape {
-	return &Shape{color: color}
-}
 
-func (s *Shape) SetColor(color Color) {
-	s.color = color
-}
+//多套一层抽象类也可以  不影响  结构体A套结构体B  则结构体A可以直接调用结构体B中的方法
+//// AbstractShape 是形状的抽象类
+//type AbstractShape struct {
+//	color Color
+//}
+//
+//func (as *AbstractShape) Draw() {
+//	as.color.Paint()
+//}
+//
+//// NewShape 创建一个有颜色的形状
+//func NewAbstractShape(color Color) *AbstractShape {
+//	return &AbstractShape{color: color}
+//}
+//
+//func (as *AbstractShape) SetColor(color Color) {
+//	as.color = color
+//}
 
-// Circle 是 Shape 的具体实现
-type Circle struct {
-	*Shape
-}
 
-func NewCircle(color Color) *Circle {
-	return &Circle{Shape: NewShape(color)}
-}
-
-func (c *Circle) Draw() string {
-	return "Circle painted in " + c.color.Paint()
-}
-
-// Square 是 Shape 的具体实现
-type Square struct {
-	*Shape
-}
-
-func NewSquare(color Color) *Square {
-	return &Square{Shape: NewShape(color)}
-}
-
-func (s *Square) Draw() string {
-	return "Square painted in " + s.color.Paint()
-}
