@@ -11,11 +11,14 @@ import (
 	. "DesignPattern/creational-pattern/objectpool-pattern"
 	. "DesignPattern/creational-pattern/prototype-pattern"
 	. "DesignPattern/observer-pattern"
-<<<<<<< Updated upstream
 	. "DesignPattern/state-pattern"
-=======
 	. "DesignPattern/structural-pattern/adapter-pattern"
->>>>>>> Stashed changes
+	cp "DesignPattern/structural-pattern/composite-pattern"
+	"reflect"
+
+	dp "DesignPattern/structural-pattern/decorator-pattern"
+	dfp "DesignPattern/structural-pattern/facade-pattern"
+	fly "DesignPattern/structural-pattern/flyweight-pattern"
 
 	"fmt"
 	"log"
@@ -23,8 +26,55 @@ import (
 )
 
 func main() {
-<<<<<<< Updated upstream
-	visitor()
+	flyweight()
+}
+
+func flyweight() {
+	factory := fly.NewFlyweightFactory()
+
+	flyweight1 := factory.GetFlyweight("A")
+	flyweight1.Operation("First call")
+
+	flyweight2 := factory.GetFlyweight("B")
+	flyweight2.Operation("Second call")
+
+	flyweight3 := factory.GetFlyweight("A")
+	flyweight3.Operation("Third call")
+
+	fmt.Printf("flyweight1 and flyweight3 are the same instance: %v\n", flyweight1 == flyweight3)
+	fmt.Printf("flyweight1 and flyweight3 are the same instance: %v\n", reflect.DeepEqual(flyweight1, flyweight3))
+}
+
+func facade() {
+	mediaFacade := dfp.NewMediaFacade()
+	mediaFacade.Play()
+}
+
+func decorator() {
+
+	notifier := &dp.ConcreteNotifier{}
+	emailNotifier := dp.NewEmailNotifier(notifier)
+	smsNotifier := dp.NewSMSNotifier(emailNotifier)
+
+	smsNotifier.Send("Hello, World!")
+}
+
+func composite() {
+	file1 := &cp.File{Name: "File1"}
+	file2 := &cp.File{Name: "File2"}
+	file3 := &cp.File{Name: "File3"}
+	folder1 := &cp.Folder{
+		Name: "Folder1",
+	}
+	folder1.Add(file1)
+
+	folder2 := &cp.Folder{
+		Name: "Folder2",
+	}
+	folder2.Add(file2)
+	folder2.Add(file3)
+	folder2.Add(folder1)
+	folder2.Search("rose")
 }
 
 func visitor() {
@@ -59,8 +109,7 @@ func nullObject() {
 
 	csDepartment := qingHua.FindDepartment("计算机")
 	fmt.Println(csDepartment.GetName())
-=======
-	adapter()
+
 }
 
 // 客户端使用现有接口target使用适配器，而不需要知道适配器内部细节
@@ -72,7 +121,7 @@ func adapter() {
 	adapter := NewAdapter(specificRequest)
 	// 使用适配器，通过 Request 接口调用 specificRequest 的方法
 	fmt.Println(adapter.Request())
->>>>>>> Stashed changes
+
 }
 
 func memento() {
