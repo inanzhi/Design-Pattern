@@ -21,7 +21,6 @@ import (
 	dfp "DesignPattern/structural-pattern/facade-pattern"
 	fly "DesignPattern/structural-pattern/flyweight-pattern"
 
-
 	bp "DesignPattern/structural-pattern/bridge-pattern"
 
 	"fmt"
@@ -127,8 +126,6 @@ func nullObject() {
 
 	csDepartment := qingHua.FindDepartment("计算机")
 	fmt.Println(csDepartment.GetName())
-
-
 
 
 }
