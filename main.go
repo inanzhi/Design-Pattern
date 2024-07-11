@@ -13,6 +13,7 @@ import (
 	. "DesignPattern/observer-pattern"
 	. "DesignPattern/state-pattern"
 	. "DesignPattern/structural-pattern/adapter-pattern"
+
 	cp "DesignPattern/structural-pattern/composite-pattern"
 	"reflect"
 
@@ -20,12 +21,16 @@ import (
 	dfp "DesignPattern/structural-pattern/facade-pattern"
 	fly "DesignPattern/structural-pattern/flyweight-pattern"
 
+
+	bp "DesignPattern/structural-pattern/bridge-pattern"
+
 	"fmt"
 	"log"
 	"strconv"
 )
 
 func main() {
+
 	flyweight()
 }
 
@@ -75,6 +80,19 @@ func composite() {
 	folder2.Add(file3)
 	folder2.Add(folder1)
 	folder2.Search("rose")
+
+}
+
+func bridge(){
+	red := &bp.Red{}
+	blue :=&bp.Blue{}
+
+	redSquare := bp.NewSquare(red)
+	fmt.Println(redSquare.Draw())
+	blueCircle := bp.NewCircle(blue)
+	fmt.Println(blueCircle.Draw())
+
+
 }
 
 func visitor() {
@@ -109,6 +127,9 @@ func nullObject() {
 
 	csDepartment := qingHua.FindDepartment("计算机")
 	fmt.Println(csDepartment.GetName())
+
+
+
 
 }
 
